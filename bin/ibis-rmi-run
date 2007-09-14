@@ -1,0 +1,19 @@
+#!/bin/sh
+
+#ibis-rmi-run script.
+#This script is a convenience script to run Ibis RMI applications.
+
+# Check setting of RMI_HOME
+if [ -z "$RMI_HOME" ];  then
+    echo "please set RMI_HOME to the location of your Ibis RMI installation" 1>&2
+    exit 1
+fi
+
+# Check setting of IBIS_HOME
+if [ -z "$IBIS_HOME" ];  then
+    echo "please set IBIS_HOME to the location of your Ibis installation" 1>&2
+    exit 1
+fi
+
+export CLASSPATH=$RMI_HOME/lib/rmi.jar:$CLASSPATH"
+$IBIS_HOME/bin/ibis-run "$@"
