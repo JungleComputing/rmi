@@ -3,25 +3,28 @@
 	Build file for Ibis RMI
     </description>
 
+    <property environment="env"/>
+
+    <property name="ibis"        location="${env.IBIS_HOME}"/>
+
     <target name="build" description="Build Ibis RMI" depends="clean,compile">
     </target>
 
     <property name="src" location="src" />
     <property name="tmp" location="tmp" />
     <property name="lib" location="lib" />
-    <property name="external" location="external" />
 
     <!-- import environment properties -->
     <property environment="env" />
 
     <path id="external.jars">
-        <fileset dir="${external}">
+	<fileset dir="${ibis}/lib">
             <include name="*.jar" />
         </fileset>
     </path>
 
     <path id="default.classpath">
-        <fileset dir="${external}">
+	<fileset dir="${ibis}/lib">
             <include name="*.jar" />
         </fileset>
         <pathelement path="${tmp}" />
@@ -64,7 +67,7 @@
 
         <!-- Copy external libraries to lib directory -->
         <copy todir="${lib}">
-            <fileset dir="${external}" />
+	    <fileset dir="${ibis}/lib" />
         </copy>
 
         <delete dir="${tmp}" />

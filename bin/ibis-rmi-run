@@ -9,11 +9,24 @@ if [ -z "$RMI_HOME" ];  then
     exit 1
 fi
 
-# Check setting of IBIS_HOME
-if [ -z "$IBIS_HOME" ];  then
-    echo "please set IBIS_HOME to the location of your Ibis installation" 1>&2
-    exit 1
-fi
+# Jar-files from library.
+LIBCLASSPATH=""
+add_to_libclasspath () {
+    JARFILES=`cd "$1" && ls *.jar 2>/dev/null`
+    for i in ${JARFILES} ; do
+	if [ -z "$LIBCLASSPATH" ] ; then
+	    LIBCLASSPATH="$1/$i"
+	else
+	    LIBCLASSPATH="$LIBCLASSPATH:$1/$i"
+	fi
+    done
+}
 
-export CLASSPATH=$RMI_HOME/lib/rmi.jar:$CLASSPATH"
-$IBIS_HOME/bin/ibis-run "$@"
+# Add the jar files in the Ibis lib dir to the classpath.
+add_to_libclasspath "${RMI_HOME}"/lib
+
+# and . for now ...
+add_to_libclasspath .
+
+# And finally, run ...
+java -classpath "$CLASSPATH:$LIBCLASSPATH" -Dlog4j.configuration=file:$RMI_HOME/log4j.properties "$@"
