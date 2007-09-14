@@ -24,7 +24,6 @@ import ibis.rmi.server.RemoteRef;
 import ibis.rmi.server.RemoteStub;
 import ibis.rmi.server.SkeletonNotFoundException;
 import ibis.util.IPUtils;
-import ibis.util.Log;
 import ibis.util.Timer;
 import ibis.util.TypedProperties;
 
@@ -270,8 +269,6 @@ public final class RTS {
             receiveports =
                     new HashMap<IbisIdentifier, ArrayList<ReceivePort>>();
             skeletonArray = new ArrayList<Skeleton>();
-
-            Log.initLog4J("ibis.rmi");
 
             upcallHandler = new UpcallHandler();
 
