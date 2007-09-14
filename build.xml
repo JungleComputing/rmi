@@ -1,0 +1,81 @@
+<project name="Ibis RMI" default="build" basedir=".">
+    <description>
+	Build file for Ibis RMI
+    </description>
+
+    <target name="build" description="Build Ibis RMI" depends="clean,compile">
+    </target>
+
+    <property name="src" location="src" />
+    <property name="tmp" location="tmp" />
+    <property name="lib" location="lib" />
+    <property name="external" location="external" />
+
+    <!-- import environment properties -->
+    <property environment="env" />
+
+    <path id="external.jars">
+        <fileset dir="${external}">
+            <include name="*.jar" />
+        </fileset>
+    </path>
+
+    <path id="default.classpath">
+        <fileset dir="${external}">
+            <include name="*.jar" />
+        </fileset>
+        <pathelement path="${tmp}" />
+    </path>
+
+    <!--
+    Compile ibis RMI
+    -->
+    <target name="compile">
+        <mkdir dir="${tmp}" />
+        <mkdir dir="${lib}" />
+
+        <!-- Compile the java code from ${src} into ${tmp} -->
+        <javac srcdir="${src}" destdir="${tmp}" debug="on">
+            <classpath refid="external.jars" />
+        </javac>
+
+        <!-- Run Rmic on RegistryImpl -->
+        <java classname="ibis.rmi.impl.frontend.Rmic" taskname="Rmic" failonerror="true" dir="${tmp}" maxmemory="512m" fork="true">
+            <arg line="-dir ibis.rmi.registry.impl.RegistryImpl" />
+            <classpath refid="default.classpath" />
+        </java>
+        <javac destdir="${tmp}" debug="true" srcdir="${tmp}" includes="ibis/rmi/registry/impl/*.java">
+            <classpath refid="default.classpath" />
+        </javac>
+
+        <!-- Run Ibisc -->
+        <java classname="ibis.frontend.Ibisc" taskname="Ibisc" failonerror="true" dir="${tmp}" maxmemory="512m" fork="true">
+            <arg line="." />
+            <classpath refid="default.classpath" />
+        </java>
+
+        <!-- Create jar file -->
+
+        <jar destfile="lib/rmi.jar" basedir="${tmp}" includes="**/*.class">
+            <manifest>
+                <attribute name="Ibisc-Component" value="ibis.rmi.impl.frontend.Rmic" />
+            </manifest>
+        </jar>
+
+        <!-- Copy external libraries to lib directory -->
+        <copy todir="${lib}">
+            <fileset dir="${external}" />
+        </copy>
+
+        <delete dir="${tmp}" />
+    </target>
+
+    <!--
+       Clean up everything except the rewritten classlibs
+    -->
+    <target name="clean" description="Clean up">
+        <delete dir="${tmp}" />
+        <delete dir="${lib}" />
+    </target>
+
+</project>
