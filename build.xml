@@ -11,7 +11,6 @@
 	description="Build Ibis RMI"
 	depends="clean,compile"/>
 
-    <property name="src" location="src" />
     <property name="tmp" location="tmp" />
     <property name="lib" location="lib" />
 
@@ -20,6 +19,9 @@
 	<fileset dir="${ibis}/lib">
             <include name="*.jar" />
         </fileset>
+	<fileset dir="external">
+	    <include name="*.jar" />
+	</fileset>
         <pathelement path="${tmp}" />
     </path>
 
@@ -28,8 +30,8 @@
         <mkdir dir="${tmp}" />
         <mkdir dir="${lib}" />
 
-        <!-- Compile the java code from ${src} into ${tmp} -->
-        <javac srcdir="${src}" destdir="${tmp}" debug="on">
+        <!-- Compile the java code from src into ${tmp} -->
+        <javac srcdir="src" destdir="${tmp}" debug="on">
             <classpath refid="default.classpath" />
         </javac>
 
@@ -74,6 +76,7 @@
         <!-- Copy external libraries to lib directory -->
         <copy todir="${lib}">
 	    <fileset dir="${ibis}/lib" />
+	    <fileset dir="external" />
         </copy>
 
     </target>
