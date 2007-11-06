@@ -2,7 +2,6 @@
 
 package ibis.rmi.impl.frontend;
 
-import org.apache.bcel.classfile.Method;
 import org.apache.bcel.generic.ArrayType;
 import org.apache.bcel.generic.BasicType;
 import org.apache.bcel.generic.Type;
