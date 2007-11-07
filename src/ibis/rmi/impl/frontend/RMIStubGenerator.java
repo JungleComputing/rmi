@@ -2,7 +2,7 @@
 
 package ibis.rmi.impl.frontend;
 
-import ibis.frontend.util.BT_Analyzer;
+import ibis.compile.util.BT_Analyzer;
 
 import java.io.PrintWriter;
 import java.util.Vector;
