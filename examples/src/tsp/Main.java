@@ -10,7 +10,7 @@ import java.rmi.registry.Registry;
 import shared.RMI_init;
 
 
-class Server {
+class Main {
 
     static Registry local = null;
 
@@ -24,7 +24,7 @@ class Server {
 
     PoolInfo info;
 
-    Server(PoolInfo info, String[] argv) {
+    Main(PoolInfo info, String[] argv) {
         String filename = null;
         int bound = Integer.MAX_VALUE;
         int cpu = info.rank();
@@ -40,14 +40,14 @@ class Server {
                 options++;
             } else {
                 if (cpu == 0)
-                    System.out.println("Usage: java Server <city filename>");
+                    System.out.println("Usage: java tsp.Main <city filename>");
                 System.exit(1);
             }
         }
 
         if (filename == null) {
             if (cpu == 0)
-                System.out.println("Usage: java Server <city filename>");
+                System.out.println("Usage: java tsp.Main <city filename>");
             System.exit(1);
         }
 
@@ -151,7 +151,7 @@ class Server {
             c.start();
 
             if (cpu == 0) {
-                new Server(info, argv).start();
+                new Main(info, argv).start();
             }
 
             c.join();

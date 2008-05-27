@@ -74,8 +74,6 @@ class Client extends Thread {
             System.err.println("Lookup fails " + e);
         }
 
-        System.out.println(" found");
-
         try {
             minReceiver = new MinimumReceiverImpl(this);
 
