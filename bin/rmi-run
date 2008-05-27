@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#ibis-rmi-run script.
+#rmi-run script.
 #This script is a convenience script to run Ibis RMI applications.
 
 # Check setting of RMI_HOME
