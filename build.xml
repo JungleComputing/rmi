@@ -3,7 +3,7 @@
 	Build file for Ibis RMI implementation
     </description>
 
-    <property name="version" value="-2.0" />
+    <property name="version" value="-2.1" />
 
     <property name="dist-name" value="${ant.project.name}${version}" />
 
@@ -32,7 +32,7 @@
         <mkdir dir="${lib}" />
 
         <copy todir="${lib}">
-            <fileset dir="${external}/ibis" />
+            <fileset dir="${external}/ipl" />
         </copy>
     </target>
 
