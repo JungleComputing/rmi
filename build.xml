@@ -115,7 +115,7 @@
         <javadoc destdir="${javadoc}"
                  access="public"
                  classpathref="default.classpath"
-                 packagenames="*"
+                 packagenames="ibis.rmi,ibis.rmi.registry,ibis.rmi.server"
                  sourcepath="${src}"
                  windowtitle="Ibis ${ant.project.name} Documentation"
                  doctitle="Ibis ${ant.project.name} Documentation"
