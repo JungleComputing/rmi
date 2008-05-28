@@ -1,6 +1,6 @@
 /* $Id$ */
 
-package tsp;
+package water;
 
 
 import java.io.BufferedInputStream;

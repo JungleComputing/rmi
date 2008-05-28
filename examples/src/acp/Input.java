@@ -1,6 +1,6 @@
 /* $Id$ */
 
-package tsp;
+package acp;
 
 
 import java.io.BufferedInputStream;
@@ -198,7 +198,6 @@ public class Input {
     // Bij lezen van een file staat tussen ieder tweetal opeenvolgende regels
     // een line separator. Deze is systeemafhankelijk en kan worden opgevraagd.
     void reset(String name) {
-        //	in = try_new_FileInputStream(name);
         in = new BufferedInputStream(try_new_FileInputStream(name));
         readingFromStandardInput = false;
         lineSeparator = try_getProperty("line.separator");
@@ -308,14 +307,12 @@ public class Input {
         switch (nextChar()) {
         case '+':
             getChar();
-            break;
+            return "";
         case '-':
             return String.valueOf(getChar());
         default:
-            break;
+            return "";
         }
-
-        return "";
     }
 
     protected String optionalCardinal() {
@@ -336,8 +333,6 @@ public class Input {
 
     protected String cardinal() {
         if (!Character.isDigit(nextChar())) {
-            int c = nextChar();
-            System.out.println("tried char '" + c + "'.");
             System.err.println("Cannot read digits.");
             System.exit(1);
         }
@@ -458,7 +453,10 @@ public class Input {
             s += cardinal();
             switch (nextChar()) {
             case '.':
-                s += decimalPoint() + optionalCardinal() + optionalExponent();
+                //s += decimalPoint() + optionalCardinal() + optionalExponent();
+                String aap = decimalPoint() + optionalCardinal()
+                        + optionalExponent();
+                s += aap;
                 break;
             case 'e':
             case 'E':
@@ -467,7 +465,10 @@ public class Input {
             }
         } else {
             if (nextChar() == '.') {
-                s += decimalPoint() + cardinal() + optionalExponent();
+                //s += decimalPoint() + cardinal() + optionalExponent();
+                String aap = decimalPoint() + optionalCardinal()
+                        + optionalExponent();
+                s += aap;
             } else {
                 System.err.println(NAME[floatingPointType] + " should begin "
                         + "with a digit or a decimal point");
