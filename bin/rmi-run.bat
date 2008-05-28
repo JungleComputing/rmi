@@ -13,7 +13,7 @@ set RMI_APP_ARGS=
 
 :setupArgs
 if ""%1""=="""" goto doneStart
-set RMI_APP_ARGS=%RMI_APP_ARGS% "%1"
+set RMI_APP_ARGS=%RMI_APP_ARGS% %1
 shift
 goto setupArgs
 
