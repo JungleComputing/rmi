@@ -150,7 +150,7 @@ class Main {
 
             c.start();
 
-            if (cpu == 0) {
+            if (RMI_init.iAmRegistry) {
                 new Main(info, argv).start();
             }
 

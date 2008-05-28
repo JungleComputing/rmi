@@ -17,6 +17,8 @@ public class RMI_init {
 
     static boolean isInitialized = false;
 
+    public static boolean iAmRegistry = false;
+
     public static Registry getRegistry(InetAddress owner) throws IOException {
     	return getRegistry(owner.getHostAddress());
     }
@@ -46,6 +48,7 @@ public class RMI_init {
             while (reg == null) {
                 try {
                     reg = LocateRegistry.createRegistry(port);
+                    iAmRegistry = true;
                     break;
                 } catch (RemoteException e) {
                 }
