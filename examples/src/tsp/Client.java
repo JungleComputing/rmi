@@ -48,14 +48,14 @@ class Client extends Thread {
                 options++;
             } else {
                 if (cpu == 0)
-                    System.out.println("Usage: java Server <city filename>");
+                    System.out.println("Usage: java tsp.Main <city filename>");
                 System.exit(1);
             }
         }
 
         if (filename == null) {
             if (cpu == 0)
-                System.out.println("Usage: java Server <city filename>");
+                System.out.println("Usage: java tsp.Main <city filename>");
             System.exit(1);
         }
 
