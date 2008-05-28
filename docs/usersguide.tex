@@ -380,16 +380,17 @@ Next, we will start the application two times. One instance will act as both an
 "RMI server" and an "RMI client", the other one will be an "RMI client".
 Ibis RMI will determine who is who automatically. Therefore we can using the
 same command line for both server and client.
-Run the following command in two different shells:
+Run the following commands in two different shells:
 
 \noindent
 {\small
 \begin{verbatim}
-C:\DOCUME~1\Temp> set CLASSPATH=%RMI_HOME%\examples\lib\rmi-examples.jar
-C:\DOCUME~1\Temp> "%RMI_HOME%"\bin\rmi-run
+C:\DOCUME~1\Temp> cd %RMI_HOME%\examples
+C:...> set CLASSPATH=lib\rmi-examples.jar
+C:...> "%RMI_HOME%"\bin\rmi-run
     "-Dibis.server.address=localhost"
     "-Dibis.pool.size=2" "-Dibis.pool.name=test"
-    tsp.Main "%RMI_HOME%"\examples\src\tsp\table_15.1
+    tsp.Main src\tsp\table_15.1
 \end{verbatim}
 }
 \noindent
@@ -416,19 +417,20 @@ TSP-RMI took 13.996 seconds
 or something similar.
 
 As said, the rmi-run script is only provided for convenience. To run
-the application without rmi-run, the command below can be used.
+the application without rmi-run, the commands below can be used.
 Note that this only works with Java 6. For Java 1.5, you need to
 explicitly add all jar files in \%RMI\_HOME\%$\backslash$lib to the classpath.
 
 \noindent
 {\small
 \begin{verbatim}
-C:\DOCUME~1\Temp> java
-    -cp "%RMI_HOME%\lib\*";"%RMI_HOME%"\examples\lib\rmi-examples.jar
+C:\DOCUME~1\Temp> cd %RMI_HOME%\examples
+C:...> java
+    -cp "%RMI_HOME%\lib\*";lib\rmi-examples.jar
     -Dibis.server.address=localhost
     -Dibis.pool.name=test -Dibis.pool.size=2
     -Dlog4j.configuration=file:"%RMI_HOME%"\log4j.properties
-    tsp.Main "%RMI_HOME%"\examples\src\tsp\table_15.1
+    tsp.Main src\tsp\table_15.1
 \end{verbatim}
 }
 \noindent
