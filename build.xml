@@ -139,7 +139,7 @@
     </target>
 
     <target name="dist" depends="build,docs">
-	 <ant dir="examples" inheritAll="false" />
+        <ant dir="examples" inheritAll="false" />
         <delete file="${dist-name}.zip" />
         <delete dir="${sources}" />
 

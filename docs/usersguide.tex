@@ -86,12 +86,13 @@ readers that are familiar with the Ibis communication library.
 \section{Compiling the TSP example}
 
 The TSP example application for RMI is
-provided with the Ibis RMI distribution, in the \texttt{examples} directory.
-For convenience, the application is already compiled.
+provided with the Ibis RMI distribution, in the \texttt{examples} directory,
+which also contains various other examples.
+For convenience, the examples are already compiled.
 
 If you change the example, you will need to recompile it. This
 requires the build system \texttt{ant}\footnote{\url{http://ant.apache.org}}.
-Running \texttt{ant} in the examples directory compiles the example,
+Running \texttt{ant} in the examples directory compiles the examples,
 and rewrites the class files for use with Ibis RMI.
 
 If, for some reason, it is not convenient to use \emph{ant} to compile
@@ -109,7 +110,7 @@ $ cd $RMI_HOME/examples
 $ mkdir tmp
 $ javac -d tmp -g \
      -classpath ../external/ipl/ibis-poolinfo-2.1.1.jar \
-     src/tsp/*.java src/shared/*.java
+     src/*/*.java
 $ ../bin/rmic -cp tmp tmp
 $ mkdir lib
 $ ( cd tmp ; jar c . ) > lib/rmi-examples.jar
@@ -355,6 +356,10 @@ $ java \
 We will now run the example on a Windows XP system.
 All code below assumes the RMI\_HOME
 environment variable is set to the location of the Ibis RMI distribution.
+
+To set environment variable on Windows, right-click on the 'My Computer' icon,
+'Properties', 'Advanced' tab, 'Environment Variables' button. There, you
+can add variables to either the User variables or the System variables.
 
 First, we will need an Ibis server. Start a command prompt window and
 run the \texttt{rmi-server} script:
