@@ -72,6 +72,10 @@ with Ibis \texttt{rmic} instead of the Sun \texttt{rmic}.
 This manual describes the steps required to run an RMI application
 using the Ibis RMI System.
 
+Note that Ibis RMI does not have a separate \texttt{rmi-registry} command.
+One of the instances of your application has to create a registry.
+See, for example \texttt{examples/src/shared/RMI\_init.java}.
+
 %\remark{TODO limitations/restrictions.}
 
 Since Ibis RMI is built on top of the Ibis Portability Layer (IPL),

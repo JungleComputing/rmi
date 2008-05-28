@@ -7,11 +7,6 @@
 
     <property name="dist-name" value="${ant.project.name}${version}" />
 
-    <!-- Import environment properties -->
-
-    <property environment="env" />
-    <property name="ipl" location="${env.IPL_HOME}" />
-
     <target name="build"
             description="Build with included IPL"
             depends="clean,copy-included-ipl,compile,javadoc" />
@@ -30,25 +25,26 @@
     <!-- copy external dependancies to lib, including provided IPL -->
     <target name="copy-included-ipl">
         <mkdir dir="${lib}" />
-
         <copy todir="${lib}">
             <fileset dir="${external}/ipl" />
         </copy>
     </target>
 
     <!-- copy external dependancies to lib, including IPL 
-         specified by $IPL_HOME -->
+	 specified by $IPL_HOME -->
     <target name="copy-external-ipl">
+	<!-- Import environment properties -->
+	<property environment="env" />
+	<property name="ipl" location="${env.IPL_HOME}" />
         <mkdir dir="${lib}" />
-
         <copy todir="${lib}">
             <fileset dir="${ipl}/lib" />
         </copy>
-
     </target>
 
     <!-- Compile -->
     <target name="compile">
+
         <mkdir dir="${tmp}" />
         <mkdir dir="${lib}" />
 
@@ -58,7 +54,7 @@
         </copy>
 
         <path id="default.classpath">
-            <fileset dir="lib">
+	    <fileset dir="${lib}">
                 <include name="*.jar" />
             </fileset>
             <pathelement path="${tmp}" />
@@ -71,7 +67,7 @@
                source="1.5"
                target="1.5"
                classpathref="default.classpath">
-		<compilerarg value="-Xlint:unchecked" />
+	   <compilerarg value="-Xlint:unchecked" />
 	</javac>
 
         <!-- Run Rmic on RegistryImpl -->
@@ -98,8 +94,8 @@
               dir="${tmp}"
               maxmemory="512m"
               fork="true">
-            <arg line="." />
-            <classpath refid="default.classpath" />
+	    <arg line="." />
+	    <classpath refid="default.classpath" />
         </java>
 
         <!-- Create jar file -->
@@ -112,8 +108,6 @@
             </manifest>
         </jar>
         <delete dir="${tmp}" />
-
-        <!-- Copy external libraries to lib directory -->
     </target>
 
     <!-- Generate javadoc -->
@@ -130,14 +124,22 @@
         </javadoc>
     </target>
 
+    <target name="docs" description="Create manuals">
+	 <ant dir="docs" inheritAll="false" />
+     </target>
+
     <!-- Clean up everything -->
     <target name="clean" description="Clean up">
         <delete dir="${tmp}" />
         <delete dir="${lib}" />
         <delete dir="${javadoc}" />
+        <delete dir="${sources}" />
+	<ant dir="examples" inheritAll="false" target="clean" />
+	<ant dir="docs" inheritAll="false" target="clean" />
     </target>
 
-    <target name="dist" depends="build">
+    <target name="dist" depends="build,docs">
+	 <ant dir="examples" inheritAll="false" />
         <delete file="${dist-name}.zip" />
         <delete dir="${sources}" />
 
