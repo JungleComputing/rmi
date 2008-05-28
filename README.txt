@@ -4,9 +4,9 @@ Ibis RMI is part of Ibis, an open source Java grid software project of
 the Computer Systems group of the Computer Science department of the
 Faculty of Sciences at the Vrije Universiteit, Amsterdam, The Netherlands.
 
-Ibis RMI is built on the Ibis Portability Layer (IPL), which is included in this
-release. Some example Ibis RMI applications are provided in the "examples"
-directory.
+Ibis RMI is a re-implementation of Java RMI, built on the Ibis Portability
+Layer (IPL), which is included in this release.
+Some example Ibis RMI applications are provided in the "examples" directory.
 
 Ibis RMI is free software. See the file "LICENSE.txt" for copying permissions.
 
