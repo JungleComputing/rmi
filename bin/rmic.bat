@@ -10,6 +10,8 @@ set JAVACLASSPATH=%CLASSPATH%;
 for %%i in ("%RMI_HOME%\lib\*.jar") do call "%RMI_HOME%\bin\AddToRmiClassPath.bat" %%i
 
 set IBISC_ARGS=
+
+:setupArgs
 if ""%1""=="""" goto doneStart
 set IBISC_ARGS=%IBISC_ARGS% "%1"
 shift
