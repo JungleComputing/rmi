@@ -7,7 +7,6 @@
 	Ibis RMI application build
     </description>
 
-    <property environment="env"/>
     <property name="rmi"       location=".."/>
 
     <property name="tmp"         value="tmp"/>
