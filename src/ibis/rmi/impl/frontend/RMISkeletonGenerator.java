@@ -162,11 +162,13 @@ class RMISkeletonGenerator extends RMIGenerator {
                 // - the method does not do any other method invocations.
                 // - no synchronization
                 // (Ceriel)
+                // No, not true! An answer is sent from the upcall, so finish
+                // needs to be called. -- Ceriel
                 output.println("\t\t\tcolobus.fireStopEvent(handle, \"RMI parameter deserialization of method " + m.getName() + "\");");
 
-                if (!is_simple_method) {
+                // if (!is_simple_method) {
                     output.println("\t\t\t\tr.finish();");
-                }
+                // }
                 if (has_object_params) {
                     output.println("\t\t\t} catch(ClassNotFoundException e) {");
                     output.println("\t\t\tcolobus.fireStopEvent(handle, \"RMI parameter deserialization of method " + m.getName() + "\");");
