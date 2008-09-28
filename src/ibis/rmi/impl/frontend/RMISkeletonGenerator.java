@@ -141,50 +141,45 @@ class RMISkeletonGenerator extends RMIGenerator {
 
             output.println("\t\t\t/* First - Extract the parameters */");
 
-            if (params.length > 0 || !is_simple_method) {
-                for (int j = 0; j < params.length; j++) {
-                    Type temp = params[j];
-                    output.println("\t\t\t" + getType(temp) + " p" + j + ";");
-                    if (!(temp instanceof BasicType)) {
-                        has_object_params = true;
-                    }
+            for (int j = 0; j < params.length; j++) {
+                Type temp = params[j];
+                output.println("\t\t\t" + getType(temp) + " p" + j + ";");
+                if (!(temp instanceof BasicType)) {
+                    has_object_params = true;
                 }
-                output.println("\t\t\ttry {");
-                for (int k = 0; k < params.length; k++) {
-                    Type temp = params[k];
-                    output.println(readMessageType("\t\t\t\t", "p" + k, "r",
-                            temp));
-                }
-                // we should try to optimize this finish away, to avoid 
-                // thread creation!!! --Rob
-                // We can do this if
-                // - the method does not have loops
-                // - the method does not do any other method invocations.
-                // - no synchronization
-                // (Ceriel)
-                // No, not true! An answer is sent from the upcall, so finish
-                // needs to be called. -- Ceriel
-                output.println("\t\t\tcolobus.fireStopEvent(handle, \"RMI parameter deserialization of method " + m.getName() + "\");");
+            }
+            output.println("\t\t\ttry {");
+            for (int k = 0; k < params.length; k++) {
+                Type temp = params[k];
+                output.println(readMessageType("\t\t\t\t", "p" + k, "r",
+                        temp));
+            }
+            // we should try to optimize this finish away, to avoid 
+            // thread creation!!! --Rob
+            // We can do this if
+            // - the method does not have loops
+            // - the method does not do any other method invocations.
+            // - no synchronization
+            // (Ceriel)
+            // No, not true! An answer is sent from the upcall, so finish
+            // needs to be called. -- Ceriel
 
-                // if (!is_simple_method) {
-                    output.println("\t\t\t\tr.finish();");
-                // }
-                if (has_object_params) {
-                    output.println("\t\t\t} catch(ClassNotFoundException e) {");
-                    output.println("\t\t\tcolobus.fireStopEvent(handle, \"RMI parameter deserialization of method " + m.getName() + "\");");
-                    output.println("\t\t\t\tthrow new "
-                            + "ibis.rmi.UnmarshalException("
-                            + "\"error unmarshalling arguments\", e);");
-                }
-                output.println("\t\t\t} catch(IOException e) {");
-                output.println("\t\t\tcolobus.fireStopEvent(handle, \"RMI parameter deserialization of method " + m.getName() + "\");");
+            // if (!is_simple_method) {
+                output.println("\t\t\t\tr.finish();");
+            // }
+            if (has_object_params) {
+                output.println("\t\t\t} catch(ClassNotFoundException e) {");
                 output.println("\t\t\t\tthrow new "
                         + "ibis.rmi.UnmarshalException("
                         + "\"error unmarshalling arguments\", e);");
-                output.println("\t\t\t}");
-            } else {
-                output.println("\t\t\tcolobus.fireStopEvent(handle, \"RMI parameter deserialization of method " + m.getName() + "\");");
             }
+            output.println("\t\t\t} catch(IOException e) {");
+            output.println("\t\t\t\tthrow new "
+                    + "ibis.rmi.UnmarshalException("
+                    + "\"error unmarshalling arguments\", e);");
+            output.println("\t\t\t} finally {");
+            output.println("\t\t\t\tcolobus.fireStopEvent(handle, \"RMI parameter deserialization of method " + m.getName() + "\");");
+            output.println("\t\t\t}");
             
             output.println();
 
@@ -260,12 +255,11 @@ class RMISkeletonGenerator extends RMIGenerator {
             output.println("\t\t\t\tw.finish();");
             output.println("\t\t\t} catch(IOException e) {");
             output.println("\t\t\t\tw.finish(e);");
-            output.println("\t\t\t\tcolobus.fireStopEvent(handle, \"RMI reply message of method " + m.getName() + "\");");
             output.println("\t\t\t\tthrow new ibis.rmi.MarshalException("
                     + "\"error marshalling return\", e);");
+            output.println("\t\t\t} finally {");
+            output.println("\t\t\t\tcolobus.fireStopEvent(handle, \"RMI reply message of method " + m.getName() + "\");");
             output.println("\t\t\t}");
-            output.println("\t\t\tcolobus.fireStopEvent(handle, \"RMI reply message of method " + m.getName() + "\");");
-
             output.println("\t\t\tbreak;");
             output.println("\t\t}");
             output.println();
