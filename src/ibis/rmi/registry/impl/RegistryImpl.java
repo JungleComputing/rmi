@@ -11,7 +11,8 @@ import ibis.rmi.registry.Registry;
 
 import java.util.HashMap;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RegistryImpl extends ibis.rmi.server.UnicastRemoteObject
         implements Registry {
@@ -26,7 +27,7 @@ public class RegistryImpl extends ibis.rmi.server.UnicastRemoteObject
     HashMap<String, Remote> remotes = new HashMap<String, Remote>();
 
     static Logger logger
-            = Logger.getLogger(RegistryImpl.class.getName());
+            = LoggerFactory.getLogger(RegistryImpl.class.getName());
 
     public RegistryImpl(int port) throws RemoteException {
         if (port <= 0) {

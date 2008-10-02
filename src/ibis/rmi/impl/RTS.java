@@ -33,7 +33,8 @@ import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Properties;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import colobus.Colobus;
 
@@ -51,7 +52,7 @@ public final class RTS {
 
     static final String[] props = { s_timer };
 
-    public static Logger logger = Logger.getLogger(RTS.class.getName());
+    public static Logger logger = LoggerFactory.getLogger(RTS.class.getName());
 
     /** Sent when a remote invocation resulted in an exception. */
     public final static byte EXCEPTION = 0;

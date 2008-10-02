@@ -11,12 +11,13 @@ import ibis.rmi.registry.Registry;
 
 import java.io.IOException;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class RegistryWrapper implements Registry {
 
     static Logger logger
-            = Logger.getLogger(RegistryWrapper.class.getName());
+            = LoggerFactory.getLogger(RegistryWrapper.class.getName());
 
     private Registry registry = null;
     private int port = 0;
