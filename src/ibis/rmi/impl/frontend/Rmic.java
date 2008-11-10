@@ -79,9 +79,9 @@ public class Rmic extends IbiscComponent {
         return new PrintWriter(new FileOutputStream(name));
     }
 
-    public boolean processArgs(ArrayList args) {
+    public boolean processArgs(ArrayList<String> args) {
         for (int i = 0; i < args.size(); i++) {
-            String arg = (String) args.get(i);
+            String arg = args.get(i);
             if (arg.equals("-rmi")) {
                 rmicEnabled = true;
                 args.remove(i--);
@@ -98,7 +98,7 @@ public class Rmic extends IbiscComponent {
         return "[-rmi] [-rmi-java2ibis]";
     }
 
-    public void process(Iterator iter) {
+    public void process(Iterator<?> iter) {
         if (! rmicEnabled) {
             return;
         }

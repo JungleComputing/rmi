@@ -361,7 +361,7 @@ public final class RTS {
         /* End of 1.3-specific code */
     }
 
-    private static String get_skel_name(Class c) {
+    private static String get_skel_name(Class<?> c) {
         String class_name = c.getName();
         Package pkg = c.getPackage();
         String package_name = pkg != null ? pkg.getName() : null;
@@ -372,7 +372,7 @@ public final class RTS {
                 + class_name.substring(class_name.lastIndexOf('.') + 1);
     }
 
-    private static String get_stub_name(Class c) {
+    private static String get_stub_name(Class<?> c) {
         String class_name = c.getName();
         Package pkg = c.getPackage();
         String package_name = pkg != null ? pkg.getName() : null;
@@ -387,7 +387,7 @@ public final class RTS {
             throws SkeletonNotFoundException {
         try {
             Skeleton skel;
-            Class c = obj.getClass();
+            Class<?> c = obj.getClass();
             String skel_name = get_skel_name(c);
             // System.out.println("skel_name = " + skel_name);
 
@@ -395,7 +395,7 @@ public final class RTS {
             // Fix is by Fabrice Huet.
             ClassLoader loader = c.getClassLoader();
 
-            Class skel_c = null;
+            Class<?> skel_c = null;
             if (loader != null) {
                 skel_c = loader.loadClass(skel_name);
             } else {
@@ -424,7 +424,7 @@ public final class RTS {
     public static RemoteStub exportObject(Remote obj, RemoteRef r)
             throws RemoteException {
         Stub stub;
-        Class c = obj.getClass();
+        Class<?> c = obj.getClass();
         Skeleton skel;
         String classname = c.getName();
 
@@ -444,7 +444,7 @@ public final class RTS {
         try {
             ClassLoader loader = obj.getClass().getClassLoader();
 
-            Class stub_c = null;
+            Class<?> stub_c = null;
             if (loader != null) {
                 stub_c = loader.loadClass(get_stub_name(c));
             } else {

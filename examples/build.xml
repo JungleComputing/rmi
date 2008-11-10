@@ -42,7 +42,7 @@ target="1.5">
 		failonerror="true"
 		maxmemory="512M"
 		fork="true">
-		<arg line="-rmi -rmi-java2ibis ."/>
+		<arg line="-rmi -rmi-java2ibis -keep ."/>
 		<classpath refid="default.classpath"/>
 	</java>
     </target>

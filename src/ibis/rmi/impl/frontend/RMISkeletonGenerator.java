@@ -32,7 +32,7 @@ class RMISkeletonGenerator extends RMIGenerator {
         this.output = output;
     }
 
-    void header(Vector methods) {
+    void header(Vector<Method> methods) {
         if (data.packagename != null && !data.packagename.equals("")) {
             output.println("package " + data.packagename + ";");
             output.println();
@@ -107,7 +107,7 @@ class RMISkeletonGenerator extends RMIGenerator {
         return false;
     }
 
-    void messageHandler(Vector methods) {
+    void messageHandler(Vector<Method> methods) {
 
         output.println("\tpublic final void upcall(ReadMessage r, int method, "
                 + "int stubID) throws ibis.rmi.RemoteException {");
@@ -318,7 +318,7 @@ class RMISkeletonGenerator extends RMIGenerator {
         output.println();
     }
 
-    void constructor(Vector methods) {
+    void constructor(Vector<Method> methods) {
 
         output.println("\tpublic rmi_skeleton_" + data.classname + "() {");
 
@@ -331,7 +331,7 @@ class RMISkeletonGenerator extends RMIGenerator {
                     + "\";");
         }
         for (int i = 0; i < methods.size(); i++) {
-            Method m = (Method) methods.get(i);
+            Method m = methods.get(i);
             output.println("\t\ttimer_" + i
                     + " = RTS.createRMITimer(this.toString() + \"_"
                     + m.getName() + "_\" + " + i + ");");

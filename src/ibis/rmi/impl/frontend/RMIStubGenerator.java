@@ -194,9 +194,9 @@ class RMIStubGenerator extends RMIGenerator {
         output.println();
     }
 
-    void header(Vector methods) {
+    void header(Vector<Method> methods) {
 
-        Vector interfaces = data.specialInterfaces;
+        Vector<JavaClass> interfaces = data.specialInterfaces;
 
         if (data.packagename != null && !data.packagename.equals("")) {
             output.println("package " + data.packagename + ";");
@@ -212,7 +212,7 @@ class RMIStubGenerator extends RMIGenerator {
                 + " extends ibis.rmi.impl.Stub implements ");
 
         for (int i = 0; i < interfaces.size(); i++) {
-            String name = ((JavaClass) interfaces.get(i)).getClassName();
+            String name = interfaces.get(i).getClassName();
             if (data.packagename != null && name.startsWith(data.packagename + ".")) {
                 output.print(name.substring(data.packagename.length() + 1));
             } else {
@@ -232,7 +232,7 @@ class RMIStubGenerator extends RMIGenerator {
         output.println();
     }
 
-    void constructor(Vector methods) {
+    void constructor(Vector<Method> methods) {
         output.println("\tpublic rmi_stub_" + data.classname + "() {");
         // output.println("\t\tsuper();");
         // output.println("\t}");
@@ -249,10 +249,10 @@ class RMIStubGenerator extends RMIGenerator {
         output.println();
     }
 
-    void body(Vector methods) {
+    void body(Vector<Method> methods) {
 
         for (int i = 0; i < methods.size(); i++) {
-            Method m = (Method) methods.get(i);
+            Method m = methods.get(i);
             methodHeader(m);
             methodBody(m, i);
             methodTrailer(m);
