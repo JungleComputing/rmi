@@ -240,7 +240,7 @@ class RMIStubGenerator extends RMIGenerator {
         // output.println("\tprotected void initStubDatastructures() {");
         // output.println("\t\tsuper();");
         for (int i = 0; i < methods.size(); i++) {
-            Method m = (Method) methods.get(i);
+            Method m = methods.get(i);
             output.println("\t\ttimer_" + i
                     + " = RTS.createRMITimer(this.toString() + \"_"
                     + m.getName() + "_\" + " + i + ");");

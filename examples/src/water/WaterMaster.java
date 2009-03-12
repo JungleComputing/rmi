@@ -114,7 +114,7 @@ public class WaterMaster extends UnicastRemoteObject implements
         double sux, suy, suz, sumx, sumy, sumz, fac;
         int mol = 0;
         int atom = 0;
-        double ns = Math.pow((double) nmol, 1.0 / 3.0) - 0.00001;
+        double ns = Math.pow(nmol, 1.0 / 3.0) - 0.00001;
         double xs = boxl / ns;
         double zero = xs * 0.50;
         double wcos = ROH * Math.cos(ANGLE * 0.5);
@@ -255,7 +255,7 @@ public class WaterMaster extends UnicastRemoteObject implements
         tlc[1] = 1.0D;
         for (int n1 = 2; n1 <= n; n1++) {
             nn = n1 - 1;
-            tn = (double) nn;
+            tn = nn;
             tlc[n1] = 1.0D;
             tk = 1.0D;
             for (int k1 = 2; k1 <= n1; k1++) {
@@ -281,32 +281,32 @@ public class WaterMaster extends UnicastRemoteObject implements
             pcc[DER_3] = 1.0D / 3.00;
             break;
         case 4:
-            pcc[DISP] = (double) 19.00 / 120.00;
-            pcc[VEL] = (double) 3.00 / 4.00;
+            pcc[DISP] = 19.00 / 120.00;
+            pcc[VEL] = 3.00 / 4.00;
             pcc[DER_3] = 1.0D / 2.00;
             pcc[DER_4] = 1.0D / 12.00;
             break;
         case 5:
-            pcc[DISP] = (double) 3.00 / 20.00;
-            pcc[VEL] = (double) 251.00 / 360.00;
-            pcc[DER_3] = (double) 11.00 / 18.00;
+            pcc[DISP] = 3.00 / 20.00;
+            pcc[VEL] = 251.00 / 360.00;
+            pcc[DER_3] = 11.00 / 18.00;
             pcc[DER_4] = 1.0D / 6.00;
             pcc[DER_5] = 1.0D / 60.00;
             break;
         case 6:
-            pcc[DISP] = (double) 863.00 / 6048.00;
-            pcc[VEL] = (double) 665.00 / 1008.00;
-            pcc[DER_3] = (double) 25.00 / 36.00;
-            pcc[DER_4] = (double) 35.00 / 144.00;
+            pcc[DISP] = 863.00 / 6048.00;
+            pcc[VEL] = 665.00 / 1008.00;
+            pcc[DER_3] = 25.00 / 36.00;
+            pcc[DER_4] = 35.00 / 144.00;
             pcc[DER_5] = 1.0D / 24.00;
             pcc[DER_6] = 1.0D / 360.00;
             break;
         case 7:
-            pcc[DISP] = (double) 275.00 / 2016.00;
-            pcc[VEL] = (double) 19087.00 / 30240.00;
-            pcc[DER_3] = (double) 137.00 / 180.00;
+            pcc[DISP] = 275.00 / 2016.00;
+            pcc[VEL] = 19087.00 / 30240.00;
+            pcc[DER_3] = 137.00 / 180.00;
             pcc[DER_4] = 5.0D / 16.00;
-            pcc[DER_5] = (double) 17.00 / 240.00;
+            pcc[DER_5] = 17.00 / 240.00;
             pcc[DER_6] = 1.0D / 120.00;
             pcc[FORCES] = 1.0D / 2520.00;
             break;

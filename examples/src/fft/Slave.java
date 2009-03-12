@@ -52,7 +52,7 @@ class Slave extends UnicastRemoteObject implements SlaveInterface {
         for (int i = 0; i < cpus; i++) {
             matrixArray[i] = new Matrix(rowsperproc);
         }
-        slaveArray = master.table((SlaveInterface) this, myCpu);
+        slaveArray = master.table(this, myCpu);
 
         // System.err.println(myCpu + ": gonna hit barrier I");
 

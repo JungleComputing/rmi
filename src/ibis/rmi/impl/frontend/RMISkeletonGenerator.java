@@ -58,6 +58,7 @@ class RMISkeletonGenerator extends RMIGenerator {
         output.println();
     }
 
+    @SuppressWarnings("unused")
     private boolean simpleMethod(Method m) {
         Code c = m.getCode();
 
@@ -126,11 +127,11 @@ class RMISkeletonGenerator extends RMIGenerator {
         output.println("\t\tswitch(method) {");
 
         for (int i = 0; i < methods.size(); i++) {
-            Method m = (Method) methods.get(i);
+            Method m = methods.get(i);
             Type ret = m.getReturnType();
             Type[] params = m.getArgumentTypes();
             boolean has_object_params = false;
-            boolean is_simple_method = simpleMethod(m);
+            // boolean is_simple_method = simpleMethod(m);
 
             output.println("\t\tcase " + i + ": /* method " + m.getName() + " */");
             output.println("\t\t{");

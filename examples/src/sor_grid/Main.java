@@ -179,7 +179,7 @@ class Main {
                 GlobalData seqGlobal = new GlobalData(seqInfo);
                 local = new SOR(1024, 1024, nit, sync, seqGlobal, null,
                         seqInfo, reduceFactor);
-                table = seqGlobal.table((i_SOR) local, seqInfo.rank());
+                table = seqGlobal.table(local, seqInfo.rank());
                 local.setTable(table);
                 local.start(false, "Calibrate");
                 speed = 1.0 / local.getElapsedTime();
@@ -195,7 +195,7 @@ class Main {
                 global.sync();
             }
 
-            table = global.table((i_SOR) local, info.rank());
+            table = global.table(local, info.rank());
             local.setTable(table);
 
             if (warmup) {

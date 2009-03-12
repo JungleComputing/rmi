@@ -62,8 +62,8 @@ public class SlaveSort {
 
         //aanmelden bij master: mijn tree
         //en mijn part
-        trees = master.getTrees((TreeInterface) tree, myNum);
-        parts = master.getParts((PartsInterface) sh_My_Keys, myNum);
+        trees = master.getTrees(tree, myNum);
+        parts = master.getParts(sh_My_Keys, myNum);
         trees[myNum] = tree;
         parts[myNum] = sh_My_Keys;
     }

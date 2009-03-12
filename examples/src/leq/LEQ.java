@@ -51,7 +51,7 @@ class LEQ {
             for (int k = 0; k < n; k++) {
                 a[j][k] = 1.0;
             }
-            a[j][offset + j] = (double) n;
+            a[j][offset + j] =  n;
             b[j] = 1.0;
         }
 

@@ -301,7 +301,7 @@ public class Rmic extends IbiscComponent {
     private void processClasses() {
         if (java2ibis) {
             for (int i = 0; i < classes.size(); i++) {
-                classes.set(i, cvt_java2ibis((JavaClass) classes.get(i)));
+                classes.set(i, cvt_java2ibis(classes.get(i)));
             }
         }
         if (rmicEnabled) {

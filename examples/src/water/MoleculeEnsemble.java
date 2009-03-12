@@ -24,7 +24,7 @@ public class MoleculeEnsemble implements ConstInterface, java.io.Serializable {
 
         for (int i = 0; i < in.length; i++) {
             try {
-                d[i] = (double[]) in[i].clone();
+                d[i] = in[i].clone();
             } catch (Exception e) {
                 if (false)
                     System.err.println("Wanna clone but this " + in[i]

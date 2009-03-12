@@ -68,7 +68,7 @@ class Main {
 
             local = new Asp(global, n, use_threads, use_thread_pool,
                     print_result);
-            table = global.table((i_Asp) local, info.rank());
+            table = global.table(local, info.rank());
             local.setTable(table);
             local.start();
 

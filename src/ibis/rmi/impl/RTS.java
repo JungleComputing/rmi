@@ -574,7 +574,7 @@ public final class RTS {
         } catch (IOException e) {
             throw new RemoteException("Could not create receive port", e);
         }
-        Stub stub = (Stub) getStub(reg);
+        Stub stub = getStub(reg);
         stub.skeletonPortId = p.identifier();
         p.enableConnections();
         p.enableMessageUpcalls();

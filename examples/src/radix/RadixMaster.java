@@ -97,7 +97,7 @@ public class RadixMaster extends UnicastRemoteObject implements
         double d2 = Math.log(2);
         double t = d1 / d2;
         int tmp = (int) (t);
-        if ((double) tmp != t) {
+        if (tmp != t) {
             System.out.println(" Radix must be a power of 2");
             System.exit(1);
         }
