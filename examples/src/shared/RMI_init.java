@@ -2,6 +2,8 @@
 
 package shared;
 
+import ibis.util.IPUtils;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.rmi.Naming;
@@ -41,7 +43,7 @@ public class RMI_init {
 
         int port = Registry.REGISTRY_PORT;
 
-        InetAddress addr = InetAddress.getLocalHost();
+        InetAddress addr = IPUtils.getLocalHostAddress();
         InetAddress regAddr = InetAddress.getByName(registryOwner);
 
         if (addr.equals(regAddr)) {

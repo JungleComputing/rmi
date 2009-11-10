@@ -287,7 +287,7 @@ class ACP {
             int cpu = info.rank();
 
             RMI_init.getRegistry(
-                    info.getInetAddress(cpu).getHostAddress());
+                    info.getInetAddress(0).getHostAddress());
 
             if (args.length != 1) {
                 System.out.println("Usage : ACP <inputfile>");
