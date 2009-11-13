@@ -109,7 +109,7 @@ its subdirectories are processed.  The command sequence
 $ cd $RMI_HOME/examples
 $ mkdir tmp
 $ javac -d tmp -g \
-     -classpath ../external/ipl/ibis-poolinfo-2.1.1.jar \
+     -classpath ../external/ibis-poolinfo-2.2.jar \
      src/*/*.java
 $ ../bin/rmic -cp tmp tmp
 $ mkdir lib
@@ -199,7 +199,7 @@ with the \texttt{ibis.properties.file} system property.
 \subsubsection{Add jar files to the classpath}
 
 The Ibis RMI implementation is provided in a single jar file: rmi.jar,
-appended with the version of Ibis RMI, for instance \texttt{rmi-2.1.jar}.
+appended with the version of Ibis RMI, for instance \texttt{rmi-2.2.jar}.
 Ibis RMI interfaces to Ibis using the Ibis Portability Layer, or
 \emph{IPL}. Both Ibis RMI and the IPL depend on various other libraries.
 All jar files in \$RMI\_HOME/lib need to be on the classpath.
