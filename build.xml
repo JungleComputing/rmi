@@ -7,6 +7,8 @@
 
     <property name="dist-name" value="${ant.project.name}${version}" />
 
+    <property name="sources-filename" value="${ant.project.name}${version}-sources" />
+
     <target name="build"
             description="Build with included IPL"
             depends="clean,copy-included-ipl,compile,javadoc" />
@@ -145,8 +147,8 @@
 
         <mkdir dir="${sources}" />
 
-        <zip destfile="${sources}/${dist-name}-src.zip">
-            <zipfileset dir="src" includes="**/*.java" prefix="${dist-name}" />
+        <zip destfile="${sources}/${sources-filename}.zip">
+            <zipfileset dir="src" includes="**/*.java" prefix="${sources-filename}" />
 
             <zipfileset dir="."
                         includes="LICENSE.txt"
