@@ -19,7 +19,7 @@ interface i_VisualBuffer extends Remote {
 
     /**
      * Wait until the visualization module has deposit its frame size here
-     * and return its width
+     * and return its width.
      *
      * @return width of the canvas in pixels
      */
@@ -27,25 +27,23 @@ interface i_VisualBuffer extends Remote {
 
     /**
      * Wait until the visualization module has deposit its frame size here
-     * and return its height
+     * and return its height.
      *
      * @return height of the canvas in pixels
      */
     public int getRawDataHeight() throws RemoteException;
 
     /**
-     * Collect deposited data for display. Synchronizes according to
-     * the value of {@link synchronous}.
+     * Collect deposited data for display.
      *
      * @return our slice of the downsized canvas
      */
     public float[][] getRawData() throws RemoteException;
 
     /**
-     * Deploy our slice of the canvas
+     * Deploy our slice of the canvas.
      *
-     * @param m our canvas slice, that has been filled with {@link
-     * 		downsample}
+     * @param m our canvas slice.
      */
     public void putMatrix(float[][] m) throws RemoteException;
 

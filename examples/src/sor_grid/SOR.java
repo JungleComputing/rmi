@@ -377,7 +377,7 @@ class SOR extends UnicastRemoteObject implements i_SOR {
         if (visual != null) {
             width = visual.getRawDataWidth();
             height = visual.getRawDataHeight();
-            canvas = VisualBuffer.createDownsampledCanves(g, width, height);
+            canvas = VisualBuffer.createDownsampledCanvas(g, width, height);
         }
 
         /* Abuse reduce as a barrier */

@@ -57,11 +57,32 @@ class RMIStubGenerator extends RMIGenerator {
         output.println();
     }
 
+    /**
+     * Returns <code>true</code> if the exception table already contains a handler
+     * for the specified exception.
+     * @param t the exception table.
+     * @param name the specified exception.
+     * @return whether the exception table already contains a handler for the specified exception.
+     */
     private boolean caught(ExceptionTable t, String name) {
         String[] names = t.getExceptionNames();
+        
+        JavaClass exception = null;
+        try {
+	    exception = Repository.lookupClass(name);
+	} catch (ClassNotFoundException e) {
+	    System.err.println("Could not find class " + name);
+	    System.exit(1);
+	}
         for (int i = 0; i < names.length; i++) {
-            if (Repository.instanceOf(name, names[i])) {
-                return true;
+            try {
+        	JavaClass caught = Repository.lookupClass(names[i]);
+        	if (exception.instanceOf(caught)) {
+        	    return true;
+        	}
+            } catch(ClassNotFoundException e) {
+        	System.err.println("Got ClassNotFoundException " + e);
+        	System.exit(1);
             }
         }
         return false;
@@ -141,23 +162,24 @@ class RMIStubGenerator extends RMIGenerator {
              * disable catching for all E1s that have a superclass that
              * is also caught.
              *						RFHH
+             * Simplified a bit: just test if e1 is an instance of e2. --Ceriel
              */
-            JavaClass[] excpt = new JavaClass[names.length];
-            for (int i = 0, n = names.length; i < n; i++) {
-                excpt[i] = Repository.lookupClass(names[i]);
-            }
             boolean[] disable = new boolean[names.length];
             for (int i = 0, n = names.length; i < n; i++) {
-                disable[i] = false;
-                JavaClass[] supers = excpt[i].getSuperClasses();
-                outer: for (int s = 0; s < supers.length; s++) {
-                    for (int j = 0; j < n; j++) {
-                        if (excpt[j].equals(supers[s])) {
-                            disable[i] = true;
-                            break outer;
-                        }
-                    }
-                }
+        	if (! disable[i]) {
+        	    for (int j = i+1; j < n; i++) {
+        		if (! disable[j]) {
+        		    try {
+				if (Repository.instanceOf(names[j], names[i])) {
+				    disable[j] = true;
+				}
+			    } catch (ClassNotFoundException e) {
+				System.err.println("Got ClassNotFoundException " + e);
+				System.exit(1);
+			    }
+        		}
+        	    }
+        	}
             }
 
             for (int i = 0; i < names.length; i++) {

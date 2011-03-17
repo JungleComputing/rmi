@@ -52,9 +52,9 @@ public class Rmic extends IbiscComponent {
     }
 
     private Rmic(String remoteInterface) {
-        rmiInterface = Repository.lookupClass(remoteInterface);
-
-        if (rmiInterface == null) {
+        try {
+	    rmiInterface = Repository.lookupClass(remoteInterface);
+	} catch (ClassNotFoundException e) {
             System.err.println("Class " + remoteInterface + " not found");
             System.exit(1);
         }
@@ -223,25 +223,26 @@ public class Rmic extends IbiscComponent {
              * and these sometimes don't refer to the new constantpool of the
              * class. However, everything seems to be good enough to dump and
              * reload.
+             * Don't know if this bug still exists with the new BCEL --Ceriel
              */
-            if (rmicEnabled) {
-                byte[] buf = c.getBytes();
-                try {
-                    c = new ClassParser(new ByteArrayInputStream(buf), classFile).parse();
-                } catch(IOException e) {
-                    // Should not happen
-                }
-                Repository.addClass(c);
-                setModified(wrapper.getInfo(c));
-            } else {
+            if (! rmicEnabled) {
                 try {
                     c.dump(classFile);
-                    c = Repository.lookupClass(className);
                 } catch(IOException e) {
                     System.err.println("got IOException " + e);
                     e.printStackTrace();
                     System.exit(1);
                 }
+            }
+            byte[] buf = c.getBytes();
+            try {
+        	c = new ClassParser(new ByteArrayInputStream(buf), classFile).parse();
+            } catch(IOException e) {
+        	// Should not happen
+            }
+            Repository.addClass(c);
+            if (rmicEnabled) {
+                setModified(wrapper.getInfo(c));
             }
         }
 
@@ -287,12 +288,12 @@ public class Rmic extends IbiscComponent {
         }
 
         for (i = 0; i < num; i++) {
-            JavaClass c = Repository.lookupClass(args[i]);
-            if (c == null) {
+            try {
+        	classes.add(Repository.lookupClass(args[i]));
+            } catch(ClassNotFoundException e) {
                 System.err.println("Class " + args[i] + " not found");
                 System.exit(1);
             }
-            classes.add(c);
         }
 
         processClasses();

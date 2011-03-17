@@ -88,7 +88,7 @@ class VisualBuffer extends UnicastRemoteObject implements i_VisualBuffer {
 
     /**
      * Collect deposited data for display. Synchronizes according to
-     * the value of {@link synchronous}.
+     * the value of {@link #synchronous}.
      *
      * @return our slice of the downsized canvas
      */
@@ -120,7 +120,7 @@ class VisualBuffer extends UnicastRemoteObject implements i_VisualBuffer {
      * @param height canvas height in pixels
      * @return downsized canvas
      */
-    public static float[][] createDownsampledCanves(double[][] m, int width,
+    public static float[][] createDownsampledCanvas(double[][] m, int width,
             int height) {
         // create the result matrix, downsample m.
         float[][] canvas = new float[height][];
@@ -142,7 +142,7 @@ class VisualBuffer extends UnicastRemoteObject implements i_VisualBuffer {
      *
      * @param m our slice of the data
      * @param canvas pre-allocated canvas, see {@link
-     * 		createDownsampledCanvas}
+     * 		#createDownsampledCanvas}
      * @param width canvas width in pixels
      * @param height canvas height in pixels
      */
@@ -167,7 +167,7 @@ class VisualBuffer extends UnicastRemoteObject implements i_VisualBuffer {
      * Deploy our slice of the canvas
      *
      * @param m our canvas slice, that has been filled with {@link
-     * 		downsample}
+     * 		#downsample}
      */
     public synchronized void putMatrix(float[][] m) throws RemoteException {
 
