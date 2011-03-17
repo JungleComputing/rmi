@@ -167,7 +167,7 @@ class RMIStubGenerator extends RMIGenerator {
             boolean[] disable = new boolean[names.length];
             for (int i = 0, n = names.length; i < n; i++) {
         	if (! disable[i]) {
-        	    for (int j = i+1; j < n; i++) {
+        	    for (int j = i+1; j < n; j++) {
         		if (! disable[j]) {
         		    try {
 				if (Repository.instanceOf(names[j], names[i])) {
