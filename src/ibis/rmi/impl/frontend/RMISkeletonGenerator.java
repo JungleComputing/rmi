@@ -2,8 +2,6 @@
 
 package ibis.rmi.impl.frontend;
 
-import ibis.compile.util.BT_Analyzer;
-
 import java.io.PrintWriter;
 import java.util.Vector;
 
@@ -58,7 +56,6 @@ class RMISkeletonGenerator extends RMIGenerator {
         output.println();
     }
 
-    @SuppressWarnings("unused")
     private boolean simpleMethod(Method m) {
         Code c = m.getCode();
 

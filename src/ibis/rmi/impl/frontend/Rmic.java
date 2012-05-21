@@ -3,7 +3,6 @@
 package ibis.rmi.impl.frontend;
 
 import ibis.compile.IbiscComponent;
-import ibis.compile.util.BT_Analyzer;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
