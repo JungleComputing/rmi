@@ -100,7 +100,7 @@ your application, or you have only class files or jar files available
 for parts of your application, it is also possible to first compile
 your application to class files or jar files, and then process those
 using the \emph{rmic} script. This script can be found in the Ibis RMI
-bin directory. It takes either directories, class files, or jar files
+scripts directory. It takes either directories, class files, or jar files
 as parameter, and processes those, possibly rewriting them. In case
 of a directory, all class files and jar files in that directory or
 its subdirectories are processed.  The command sequence
@@ -111,7 +111,7 @@ $ mkdir tmp
 $ javac -d tmp -g \
      -classpath ../external/ibis-poolinfo-2.2.jar \
      src/*/*.java
-$ ../bin/rmic -cp tmp tmp
+$ ../scripts/rmic -cp tmp tmp
 $ mkdir lib
 $ ( cd tmp ; jar c . ) > lib/rmi-examples.jar
 $ rm -rf tmp
@@ -151,7 +151,7 @@ possible between two instances due to firewalls or NAT boxes. This is
 done using the Smartsockets library of the Ibis project.
 
 The Ibis server is started with the \texttt{rmi-server} script which is
-located in the \texttt{bin} directory of the Ibis RMI distribution.  Before
+located in the \texttt{scripts} directory of the Ibis RMI distribution.  Before
 starting an Ibis RMI application, an Ibis server needs to be running on a
 machine that is accessible from all nodes participating in the Ibis RMI run.
 The server listens to a TCP port. The port number can be specified using
@@ -285,7 +285,7 @@ run the \texttt{rmi-server} script:
 \noindent
 {\small
 \begin{verbatim}
-$ $RMI_HOME/bin/rmi-server --events
+$ $RMI_HOME/scripts/rmi-server --events
 \end{verbatim}
 }
 \noindent
@@ -303,7 +303,7 @@ Run the following command in two different shells:
 {\small
 \begin{verbatim}
 $ CLASSPATH=$RMI_HOME/examples/lib/rmi-examples.jar \
-    $RMI_HOME/bin/rmi-run \
+    $RMI_HOME/scripts/rmi-run \
     -Dibis.server.address=localhost \
     -Dibis.pool.size=2 -Dibis.pool.name=test \
     tsp.Main $RMI_HOME/examples/src/tsp/table_15.1
@@ -366,7 +366,7 @@ run the \texttt{rmi-server} script:
 \noindent
 {\small
 \begin{verbatim}
-C:\DOCUME~1\Temp> "%RMI_HOME%"\bin\rmi-server --events
+C:\DOCUME~1\Temp> "%RMI_HOME%"\scripts\rmi-server --events
 \end{verbatim}
 }
 \noindent
@@ -387,7 +387,7 @@ Run the following commands in two different shells:
 \begin{verbatim}
 C:\DOCUME~1\Temp> cd %RMI_HOME%\examples
 C:...> set CLASSPATH=lib\rmi-examples.jar
-C:...> "%RMI_HOME%"\bin\rmi-run
+C:...> "%RMI_HOME%"\scripts\rmi-run
     "-Dibis.server.address=localhost"
     "-Dibis.pool.size=2" "-Dibis.pool.name=test"
     tsp.Main src\tsp\table_15.1

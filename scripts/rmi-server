@@ -9,4 +9,4 @@ if [ -z "$RMI_HOME" ];  then
     exit 1
 fi
 
-exec "$RMI_HOME"/bin/rmi-run -Xmx256M ibis.ipl.server.Server "$@"
+exec "$RMI_HOME"/scripts/rmi-run -Xmx256M ibis.ipl.server.Server "$@"
