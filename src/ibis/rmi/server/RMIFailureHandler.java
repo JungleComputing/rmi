@@ -14,7 +14,9 @@ public interface RMIFailureHandler {
     /**
      * No failure handler in Ibis RMI, but the socket factory requires
      * this.
-     */
+     * @param e not used
+     * @return not used
+    */
     public boolean failure(Exception e);
 
 }
