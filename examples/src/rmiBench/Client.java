@@ -146,6 +146,7 @@ public class Client {
 	    s = (i_Server)RMI_init.lookup("//" + server_name + "/server");
 	} catch (IOException e) {
 	    System.err.println("Cannot resolve server name: " + e);
+	    System.exit(1);
 	}
 
 	try {

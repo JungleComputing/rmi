@@ -286,7 +286,7 @@ public final class RTS {
                     new IbisCapabilities(IbisCapabilities.ELECTIONS_STRICT);
 
             requestPortType =
-                    new PortType(PortType.SERIALIZATION_OBJECT,
+                    new PortType(PortType.SERIALIZATION_OBJECT, 
                             PortType.CONNECTION_MANY_TO_ONE,
                             PortType.COMMUNICATION_RELIABLE,
                             PortType.RECEIVE_AUTO_UPCALLS);
